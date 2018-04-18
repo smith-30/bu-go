@@ -1,21 +1,17 @@
 package subcmd
 
-import (
-	"go.uber.org/zap"
-)
-
 type Mysql struct{}
 
-func (f *Boot) Help() string {
+func (f *Mysql) Help() string {
 	return "backup mysql"
 }
 
-func (f *Boot) Run(args []string) int {
-	logger, _ := zap.NewDevelopment()
+func (f *Mysql) Run(args []string) int {
+	// sl := logger.GetSugaredLogger()
 
 	return 0
 }
 
-func (f *Boot) Synopsis() string {
+func (f *Mysql) Synopsis() string {
 	return "backup mysql"
 }

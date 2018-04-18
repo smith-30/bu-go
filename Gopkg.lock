@@ -56,6 +56,12 @@
   revision = "c48282d14eba4b0817ddef3f832ff8d13851aefd"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/otiai10/copy"
+  packages = ["."]
+  revision = "c59d460454b7a0c318e59595cb3ea22a41ba2572"
+
+[[projects]]
   name = "github.com/posener/complete"
   packages = [
     ".",
@@ -100,6 +106,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e59cd80addb84527786710d00ff115240f39c8ca486f0998215a068ca282487a"
+  inputs-digest = "234c886cbb6ccc28e309ad2bd3ac2eb2c1cfe4093d58aa132bc386ff4e1f9e5c"
   solver-name = "gps-cdcl"
   solver-version = 1

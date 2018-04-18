@@ -6,6 +6,7 @@ import (
 
 	"github.com/mitchellh/cli"
 	"github.com/smith-30/bu-go/helper/env"
+	"github.com/smith-30/bu-go/subcmd"
 )
 
 var (
@@ -19,7 +20,11 @@ func main() {
 
 	c.Args = os.Args[1:]
 
-	c.Commands = map[string]cli.CommandFactory{}
+	c.Commands = map[string]cli.CommandFactory{
+		subcmd.FOLDER: func() (cli.Command, error) {
+			return &subcmd.Folder{}, nil
+		},
+	}
 
 	exitStatus, err := c.Run()
 	if err != nil {
