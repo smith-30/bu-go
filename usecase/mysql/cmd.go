@@ -1,5 +1,5 @@
 package mysql
 
 type Command struct {
-	DumpDst
+	DumpDst string
 }
