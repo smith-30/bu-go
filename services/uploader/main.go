@@ -23,5 +23,6 @@ func NewUploader(c UploaderConfig) (Uploader, error) {
 	case googleDrive:
 		return google_drive.NewUploader(c), nil
 	}
+
 	return nil, ErrInvalidName
 }

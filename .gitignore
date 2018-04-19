@@ -28,4 +28,5 @@ vendor/
 /build/bin/*
 !/build/bin/.gitkeep
 tmp/
+*.sql
 

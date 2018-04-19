@@ -24,6 +24,9 @@ func main() {
 		subcmd.FOLDER: func() (cli.Command, error) {
 			return &subcmd.Folder{}, nil
 		},
+		subcmd.MYSQL: func() (cli.Command, error) {
+			return &subcmd.Mysql{}, nil
+		},
 	}
 
 	exitStatus, err := c.Run()

@@ -1,5 +1,5 @@
 package folder
 
 type Command struct {
-	Src, Dst, ZipName string
+	Src, Dst string
 }
