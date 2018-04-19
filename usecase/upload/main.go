@@ -15,7 +15,7 @@ func New() Usecase {
 }
 
 func (u *uc) Exec(cmd *Command) error {
-	if err := zipper.CreateZip(cmd.Dst, cmd.ZipDst); err != nil {
+	if err := zipper.CreateZip(cmd.Src, cmd.ZipName); err != nil {
 		return err
 	}
 

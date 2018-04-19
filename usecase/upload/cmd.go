@@ -2,6 +2,6 @@ package upload
 
 type Command struct {
 	Src,
-	ZipDst,
+	ZipName,
 	UploadDst string
 }

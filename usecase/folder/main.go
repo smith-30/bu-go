@@ -1,7 +1,6 @@
 package folder
 
 import (
-	"github.com/smith-30/bu-go/services/compress/zipper"
 	"github.com/smith-30/bu-go/services/file/copier"
 )
 
@@ -17,10 +16,6 @@ func New() Usecase {
 
 func (u *uc) Exec(cmd *Command) error {
 	if err := copier.Copy(cmd.Src, cmd.Dst); err != nil {
-		return err
-	}
-
-	if err := zipper.CreateZip(cmd.Dst, cmd.ZipName); err != nil {
 		return err
 	}
 
