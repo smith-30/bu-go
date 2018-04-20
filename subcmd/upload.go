@@ -55,8 +55,8 @@ func (u *Upload) Run(args []string) int {
 	wg.Wait()
 
 	cmd := &upload.Command{
-		Src:     env.GetEnvStr("COPY_SRC", ""),
-		ZipName: "/Users/kouhei/go/src/github.com/smith-30/bu-go/tmp/copied.zip",
+		Src:     env.GetEnvStr("COPY_DST", ""),
+		ZipName: env.GetEnvStr("ZIP_NAME", ""),
 	}
 
 	uc := upload.New()
