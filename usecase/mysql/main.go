@@ -19,11 +19,11 @@ func (u *uc) Exec(c *Command) error {
 	cmd := exec.Command(
 		"docker",
 		"exec",
-		"dockernginxproxyphp_app_mysql_1",
-		"/usr/bin/mysqldump",
-		"-uroot",
-		"--password=XPQ_N0+0dIm",
-		"app_mysql",
+		c.Container,
+		c.DumpCmd,
+		c.UserCmd,
+		c.PasswordCmd,
+		c.DBName,
 	)
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
@@ -39,7 +39,7 @@ func (u *uc) Exec(c *Command) error {
 		return err
 	}
 
-	err = ioutil.WriteFile("./out.sql", bytes, 0644)
+	err = ioutil.WriteFile(c.DumpDst, bytes, 0644)
 	if err != nil {
 		return err
 	}

@@ -3,6 +3,7 @@ package subcmd
 import (
 	"sync"
 
+	"github.com/smith-30/bu-go/helper/env"
 	"github.com/smith-30/bu-go/services/logger"
 	"github.com/smith-30/bu-go/usecase/folder"
 	"github.com/smith-30/bu-go/usecase/mysql"
@@ -22,7 +23,14 @@ func (u *Upload) Run(args []string) int {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		cmd := &mysql.Command{}
+		cmd := &mysql.Command{
+			DumpDst:     env.GetEnvStr("DUMP_DST", ""),
+			Container:   env.GetEnvStr("DB_CONTAINER", ""),
+			DumpCmd:     env.GetEnvStr("DUMP_CMD", ""),
+			UserCmd:     env.GetEnvStr("DB_USER", ""),
+			PasswordCmd: env.GetEnvStr("DB_PASS", ""),
+			DBName:      env.GetEnvStr("DB_NAME", ""),
+		}
 
 		uc := mysql.New()
 		if err := uc.Exec(cmd); err != nil {
@@ -34,9 +42,8 @@ func (u *Upload) Run(args []string) int {
 	go func() {
 		defer wg.Done()
 		cmd := &folder.Command{
-			Src: "/Users/kouhei/go/src/github.com/smith-30/bu-go/tmp/src",
-			Dst: "/Users/kouhei/go/src/github.com/smith-30/bu-go/tmp/copied",
-			// ZipName: "/Users/kouhei/go/src/github.com/smith-30/bu-go/tmp/copied.zip",
+			Src: env.GetEnvStr("COPY_SRC", ""),
+			Dst: env.GetEnvStr("COPY_DST", ""),
 		}
 
 		uc := folder.New()
@@ -48,7 +55,7 @@ func (u *Upload) Run(args []string) int {
 	wg.Wait()
 
 	cmd := &upload.Command{
-		Src:     "/Users/kouhei/go/src/github.com/smith-30/bu-go/tmp/src",
+		Src:     env.GetEnvStr("COPY_SRC", ""),
 		ZipName: "/Users/kouhei/go/src/github.com/smith-30/bu-go/tmp/copied.zip",
 	}
 

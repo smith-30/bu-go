@@ -1,5 +1,10 @@
 package mysql
 
 type Command struct {
-	DumpDst string
+	DumpDst,
+	Container,
+	DumpCmd,
+	UserCmd,
+	PasswordCmd,
+	DBName string
 }
