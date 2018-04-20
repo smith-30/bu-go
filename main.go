@@ -21,12 +21,6 @@ func main() {
 	c.Args = os.Args[1:]
 
 	c.Commands = map[string]cli.CommandFactory{
-		subcmd.FOLDER: func() (cli.Command, error) {
-			return &subcmd.Folder{}, nil
-		},
-		subcmd.MYSQL: func() (cli.Command, error) {
-			return &subcmd.Mysql{}, nil
-		},
 		subcmd.UPLOAD: func() (cli.Command, error) {
 			return &subcmd.Upload{}, nil
 		},
