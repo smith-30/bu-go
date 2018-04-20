@@ -5,6 +5,7 @@ import (
 
 	"github.com/smith-30/bu-go/helper/env"
 	"github.com/smith-30/bu-go/services/logger"
+	"github.com/smith-30/bu-go/services/time_util"
 	"github.com/smith-30/bu-go/usecase/folder"
 	"github.com/smith-30/bu-go/usecase/mysql"
 	"github.com/smith-30/bu-go/usecase/upload"
@@ -54,9 +55,12 @@ func (u *Upload) Run(args []string) int {
 
 	wg.Wait()
 
+	zipName := time_util.AddTS(env.GetEnvStr("ZIP_NAME", ""))
+	zipPath := env.GetEnvStr("ZIP_DST", "") + zipName
+
 	cmd := &upload.Command{
 		Src:     env.GetEnvStr("BACKUP_DIR", ""),
-		ZipName: env.GetEnvStr("ZIP_NAME", ""),
+		ZipName: zipPath,
 	}
 
 	uc := upload.New()
