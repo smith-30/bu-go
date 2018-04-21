@@ -59,8 +59,11 @@ func (u *Upload) Run(args []string) int {
 	zipPath := env.GetEnvStr("ZIP_DST", "") + zipName
 
 	cmd := &upload.Command{
-		Src:     env.GetEnvStr("BACKUP_DIR", ""),
-		ZipName: zipPath,
+		Src:          env.GetEnvStr("BACKUP_DIR", ""),
+		ZipPath:      zipPath,
+		ZipName:      "/" + zipName,
+		DropboxToken: env.GetEnvStr("DROPBOX_TOKEN", ""),
+		UseUploader:  env.GetEnvStr("UPLOADER", ""),
 	}
 
 	uc := upload.New()

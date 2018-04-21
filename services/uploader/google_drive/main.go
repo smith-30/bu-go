@@ -1,14 +1,18 @@
 package google_drive
 
-import "github.com/smith-30/bu-go/services/uploader"
+type (
+	Config struct {
+		ConfPath string
+	}
 
-type Uploader struct {
-}
+	Uploader struct {
+	}
+)
 
-func NewUploader(c uploader.UploaderConfig) Uploader {
+func NewUploader(c Config) *Uploader {
 	return &Uploader{}
 }
 
 func (u *Uploader) Upload(src, dst string) error {
-
+	return nil
 }

@@ -1,11 +1,7 @@
 package uploader
 
 type UploaderConfig struct {
+	ConfPath,
+	Token,
 	Name string
-}
-
-func NewUploaderConfig(name string) *UploaderConfig {
-	return &UploaderConfig{
-		Name: name,
-	}
 }

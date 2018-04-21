@@ -3,15 +3,17 @@ package uploader
 import (
 	"errors"
 
+	"github.com/smith-30/bu-go/services/uploader/dropbox"
 	"github.com/smith-30/bu-go/services/uploader/google_drive"
 )
 
 const (
 	googleDrive = "googleDrive"
+	Dropbox     = "dropbox"
 )
 
 var (
-	ErrInvalidName = errors.New("Invalid uploader name")
+	errInvalidName = errors.New("Invalid uploader name")
 )
 
 type Uploader interface {
@@ -21,8 +23,14 @@ type Uploader interface {
 func NewUploader(c UploaderConfig) (Uploader, error) {
 	switch c.Name {
 	case googleDrive:
-		return google_drive.NewUploader(c), nil
+		return google_drive.NewUploader(google_drive.Config{
+			ConfPath: c.ConfPath,
+		}), nil
+	case Dropbox:
+		return dropbox.NewUploader(dropbox.Config{
+			Token: c.Token,
+		}), nil
 	}
 
-	return nil, ErrInvalidName
+	return nil, errInvalidName
 }

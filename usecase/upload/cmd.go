@@ -1,7 +1,10 @@
 package upload
 
 type Command struct {
+	ConfPath,
 	Src,
+	ZipPath,
 	ZipName,
-	UploadDst string
+	DropboxToken,
+	UseUploader string
 }
