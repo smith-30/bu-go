@@ -1,6 +1,8 @@
 package upload
 
 import (
+	"os"
+
 	"github.com/smith-30/bu-go/services/compress/zipper"
 	"github.com/smith-30/bu-go/services/uploader"
 )
@@ -30,6 +32,10 @@ func (uc *uc) Exec(cmd *Command) error {
 	}
 
 	if err := u.Upload(cmd.ZipPath, cmd.ZipName); err != nil {
+		return err
+	}
+
+	if err := os.Remove(cmd.ZipPath); err != nil {
 		return err
 	}
 
